@@ -11,6 +11,7 @@ module.exports = {
     async (req,res) =>{
       const blogpost = await BlogPost.findById(req.params.id)
       res.render('post',{
+          _id: blogpost._id,
           bgimage: blogpost.image,
           heading: blogpost.title,
           subheading: 'Posted by ' + blogpost.username + ' on ' + blogpost.datePosted.toDateString(),

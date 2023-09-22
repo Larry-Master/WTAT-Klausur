@@ -69,6 +69,11 @@ router.get('/', homeController.showIndex);
  // #static_page_begin
  app.use(express.static('public'));
  // #static_page_end
+ 
+ // #increment_trigger_begin
+router.post('/posts/incrementLikes/:id', postController.incrementLikes);
+router.post('/posts/incrementDislikes/:id', postController.incrementDislikes);
+// #increment_trigger_end
 router.get('/users/register', userController.showRegister);
 router.post('/users/create', userController.register);
 router.get('/users/login', userController.showLogin);

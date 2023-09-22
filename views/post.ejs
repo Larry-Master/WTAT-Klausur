@@ -1,21 +1,32 @@
-  <!-- Main Content -->
-  <article>
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-8 col-md-10 mx-auto">
-          <!-- Blog Post Content -->
-          <div class="blog-content">
-          
-            <p><%= content %></p>
+<!-- Main Content -->
+<article>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <!-- Blog Post Content -->
+        <div class="blog-content">
+          <p><%= content %></p>
 
-            <!-- Likes, Dislikes, and Score -->
-            <div class="blog-metadata">
-              <span class="likes">Likes: <%= likes %></span>
-              <span class="dislikes">Dislikes: <%= dislikes %></span>
-              <span class="score">Score: <%= score %></span>
-            </div>
+          <!-- Likes, Dislikes, and Score -->
+          <div class="blog-metadata">
+            <span class="likes">Likes: <%= likes %></span>
+            <span class="dislikes">Dislikes: <%= dislikes %></span>
+            <span class="score">Score: <%= score %></span>
           </div>
+
+
+        <!--  #increment_trigger_begin -->
+          <div class="blog-actions">
+            <form action="/posts/incrementLikes/<%= _id %>" method="POST">
+              <button type="submit">Like</button>
+            </form>
+            <form action="/posts/incrementDislikes/<%= _id %>" method="POST">
+              <button type="submit">Dislike</button>
+            </form>
+          </div>
+          <!--  #increment_trigger_end -->
         </div>
       </div>
     </div>
-  </article>
+  </div>
+</article>
