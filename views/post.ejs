@@ -3,7 +3,18 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto">
-          <%= content %>
+          <!-- Blog Post Content -->
+          <div class="blog-content">
+          
+            <p><%= content %></p>
+
+            <!-- Likes, Dislikes, and Score -->
+            <div class="blog-metadata">
+              <span class="likes">Likes: <%= likes %></span>
+              <span class="dislikes">Dislikes: <%= dislikes %></span>
+              <span class="score">Score: <%= score %></span>
+            </div>
+          </div>
         </div>
       </div>
     </div>

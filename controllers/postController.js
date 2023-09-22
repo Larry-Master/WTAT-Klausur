@@ -14,7 +14,12 @@ module.exports = {
           bgimage: blogpost.image,
           heading: blogpost.title,
           subheading: 'Posted by ' + blogpost.username + ' on ' + blogpost.datePosted.toDateString(),
-          content: blogpost.content
+          content: blogpost.content,
+            // #add_fields_begin
+          likes: blogpost.likes,
+          dislikes: blogpost.dislikes,
+          score: blogpost.score,
+            // #add_fields_end
       });
   },
 
