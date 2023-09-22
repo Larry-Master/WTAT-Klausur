@@ -66,6 +66,9 @@ router.use((req, res, next) => {
 
 // Define routes
 router.get('/', homeController.showIndex);
+ // #static_page_begin
+ app.use(express.static('public'));
+ // #static_page_end
 router.get('/users/register', userController.showRegister);
 router.post('/users/create', userController.register);
 router.get('/users/login', userController.showLogin);
