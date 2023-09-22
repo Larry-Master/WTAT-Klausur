@@ -1,3 +1,15 @@
+
+<!-- #flash_begin -->
+<% if(flashMessages.success != null && flashMessages.success.length > 0) {%>
+  <ul class="list-group">
+    <% for(var i = 0; i < flashMessages.success.length; i++){ %>
+      <li class="list-group-item list-group-item-danger">
+        <%= flashMessages.success[i] %>
+      </li>
+    <% } %>
+  </ul>
+<% } %>
+<!-- #flash_end -->
   <!-- Main Content -->
   <div class="container">
     <div class="row">

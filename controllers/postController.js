@@ -112,10 +112,14 @@ module.exports = {
 
     // Check if the current user is the original author
     if (blogpost.username !== req.user.username) {
+      //#flash_begin
+      req.flash("error", "Unauthorized");
       return res.status(403).send('Unauthorized: You are not the author of this post');
     }
 
     // Proceed with deletion if authorized
+    req.flash("success", "Deletion authorized and successfully");
+    //#flash_end
     const deletedPost = await BlogPost.findByIdAndRemove(postId);
     res.redirect('/');
   } catch (error) {
