@@ -25,6 +25,26 @@
             </form>
           </div>
           <!--  #increment_trigger_end -->
+
+          <!--  #delete_trigger_begin -->
+          <div class="blog-actions">
+            <form id="deleteForm" action="/posts/delete/<%= _id %>" method="POST">
+              <!-- Button to trigger the confirmation dialog -->
+          <button type="button" id="deleteButton">Delete Post</button>
+          </form>
+        </div>
+
+          <script>
+            document.getElementById('deleteButton').addEventListener('click', function() {
+              const confirmation = confirm('Are you sure that you want to delete this blog post?');
+
+              if (confirmation) {
+                // If the user confirms, submit the form
+                document.getElementById('deleteForm').submit();
+              }
+            });
+          </script>
+          <!--  #delete_trigger_end -->
         </div>
       </div>
     </div>
