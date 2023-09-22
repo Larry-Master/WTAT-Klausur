@@ -1,0 +1,40 @@
+  <!-- Main Content -->
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <% if(flashMessages.error != null && flashMessages.error.length > 0) {%>
+          <ul class="list-group">
+            <% for(var i = 0; i < flashMessages.error.length; i++){ %>
+              <li class="list-group-item list-group-item-danger">
+                <%= flashMessages.error[i] %>
+              </li>
+            <% } %>
+          </ul>
+        <% } %>
+        <form action="/posts/create" method="POST" enctype="multipart/form-data">
+          <div class="control-group">
+            <div class="form-group floating-label-form-group controls">
+              <label>Title</label>
+              <input type="text" class="form-control" placeholder="Title" id="title" name="title">
+            </div>
+          </div>
+          <div class="control-group">
+            <div class="form-group floating-label-form-group controls">
+              <label>Description</label>
+              <textarea rows="5" class="form-control" id="content" placeholder="Content" name="content"></textarea>
+              <p class="help-block text-danger"></p>
+            </div>
+          </div>
+          <div class="control-group">
+            <div class="form-group floating-label-form-group controls">
+              <label>Image</label>
+              <input type="file" class="form-control" id="image" name="image">
+            </div>
+          </div>
+          <br>
+          <div id="success"></div>
+          <button type="submit" class="btn btn-primary" id="sendMessageButton">Send</button>
+        </form>
+      </div>
+    </div>
+  </div>
