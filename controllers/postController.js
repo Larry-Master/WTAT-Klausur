@@ -59,5 +59,42 @@ module.exports = {
               res.redirect('/');
           });
         }
+      },
+
+  // #increment_begin
+    incrementLikes: async (req, res) => {
+    try {
+      const blogpost = await BlogPost.findById(req.params.id);
+      if (!blogpost) {
+        return res.status(404).send('BlogPost not found');
       }
+
+      blogpost.likes++;
+      await blogpost.save();
+
+      res.status(200).send('Likes incremented successfully');
+    } catch (error) {
+      console.error(error);
+      res.status(500).send('Internal Server Error');
     }
+  },
+
+
+  incrementDislikes: async (req, res) => {
+    try {
+      const blogpost = await BlogPost.findById(req.params.id);
+      if (!blogpost) {
+        return res.status(404).send('BlogPost not found');
+      }
+
+      blogpost.dislikes++;
+      await blogpost.save();
+
+      res.status(200).send('Dislikes incremented successfully');
+    } catch (error) {
+      console.error(error);
+      res.status(500).send('Internal Server Error');
+    }
+  },
+    // #increment_end
+  }
