@@ -69,7 +69,11 @@ router.get('/', homeController.showIndex);
  // #static_page_begin
  app.use(express.static('public'));
  // #static_page_end
- 
+
+//#delete_begin
+router.post('/posts/delete/:id', postController.deletePost);
+ //#delete_end
+
  // #increment_trigger_begin
 router.post('/posts/incrementLikes/:id', postController.incrementLikes);
 router.post('/posts/incrementDislikes/:id', postController.incrementDislikes);

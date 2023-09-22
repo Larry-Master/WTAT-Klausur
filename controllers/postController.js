@@ -96,6 +96,25 @@ module.exports = {
       console.error(error);
       res.status(500).send('Internal Server Error');
     }
-  },
-    // #increment_end
+  }, // #increment_end
+
+    //#delete_begin
+    deletePost: async (req, res) => {
+    try {
+      const postId = req.params.id;
+
+
+      const deletedPost = await BlogPost.findByIdAndRemove(postId);
+
+      if (!deletedPost) {
+
+        return res.status(404).send('BlogPost not found');
+      }
+
+      res.redirect('/');
+    } catch (error) {
+      console.error(error);
+      res.status(500).send('Internal Server Error');
+    }
+  }, // #delete_end
   }
