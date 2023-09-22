@@ -20,6 +20,8 @@ module.exports = {
           likes: blogpost.likes,
           dislikes: blogpost.dislikes,
           score: blogpost.score,
+          username: blogpost.username,
+
             // #add_fields_end
       });
   },
@@ -98,23 +100,28 @@ module.exports = {
     }
   }, // #increment_end
 
-    //#delete_begin
+    //#delete_authorization_begin
     deletePost: async (req, res) => {
-    try {
-      const postId = req.params.id;
+  try {
+    const postId = req.params.id;
+    const blogpost = await BlogPost.findById(postId);
 
-
-      const deletedPost = await BlogPost.findByIdAndRemove(postId);
-
-      if (!deletedPost) {
-
-        return res.status(404).send('BlogPost not found');
-      }
-
-      res.redirect('/');
-    } catch (error) {
-      console.error(error);
-      res.status(500).send('Internal Server Error');
+    if (!blogpost) {
+      return res.status(404).send('BlogPost not found');
     }
-  }, // #delete_end
+
+    // Check if the current user is the original author
+    if (blogpost.username !== req.user.username) {
+      return res.status(403).send('Unauthorized: You are not the author of this post');
+    }
+
+    // Proceed with deletion if authorized
+    const deletedPost = await BlogPost.findByIdAndRemove(postId);
+    res.redirect('/');
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Internal Server Error');
+  }
+
+}, // #delete_authorization_end
   }

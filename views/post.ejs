@@ -27,6 +27,7 @@
           <!--  #increment_trigger_end -->
 
           <!--  #delete_trigger_begin -->
+          <% if (currentUser && currentUser.username == username) { %>
           <div class="blog-actions">
             <form id="deleteForm" action="/posts/delete/<%= _id %>" method="POST">
               <!-- Button to trigger the confirmation dialog -->
@@ -43,6 +44,7 @@
                 document.getElementById('deleteForm').submit();
               }
             });
+            <% } %>
           </script>
           <!--  #delete_trigger_end -->
         </div>
